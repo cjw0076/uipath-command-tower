@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Competition Command Tower — UiPath Maestro Case</title>
+<style>
+  :root{
+    --bg:#0b0f14; --panel:#121821; --panel2:#0e141c; --line:#1e2937;
+    --ink:#d7e2ee; --dim:#7f93a8; --acc:#4cc2ff; --uipath:#fa4616;
+    --warn:#ffcc66; --bad:#ff6b6b; --crit:#ff4757; --ok:#48d597;
+    --high:#ff924d; --med:#ffcc66; --human:#c08cff;
+    --mono:"SFMono-Regular",Consolas,"Liberation Mono",Menlo,monospace;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);
+    font:14px/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;}
+  header{display:flex;align-items:center;gap:14px;padding:12px 20px;
+    border-bottom:1px solid var(--line);background:var(--panel2);position:sticky;top:0;z-index:5}
+  header h1{font-size:16px;margin:0;letter-spacing:.4px}
+  header h1 b{color:var(--uipath)}
+  .tag{font-size:11px;color:var(--dim);border:1px solid var(--line);
+    border-radius:10px;padding:2px 8px}
+  button{background:var(--acc);color:#04121c;border:0;border-radius:6px;
+    padding:7px 13px;font:inherit;font-weight:700;cursor:pointer}
+  button.ghost{background:transparent;color:var(--dim);border:1px solid var(--line)}
+  button.approve{background:var(--ok);color:#06231a}
+  button.reject{background:var(--bad);color:#2a0808}
+  button.neutral{background:var(--warn);color:#2a2206}
+  button:disabled{opacity:.5;cursor:wait}
+  main{max-width:1280px;margin:0 auto;padding:18px;display:grid;gap:16px}
+  .grid2{display:grid;grid-template-columns:1.35fr 1fr;gap:16px}
+  @media(max-width:980px){.grid2{grid-template-columns:1fr}}
+  .card{background:var(--panel);border:1px solid var(--line);border-radius:10px;overflow:hidden}
+  .card h2{font-size:12px;text-transform:uppercase;letter-spacing:1px;
+    color:var(--dim);margin:0;padding:11px 14px;border-bottom:1px solid var(--line);
+    display:flex;justify-content:space-between;align-items:center}
+  .card .body{padding:14px}
+  .muted{color:var(--dim)}
+  .kpi{display:flex;gap:22px;flex-wrap:wrap}
+  .kpi .x{font-size:22px;font-weight:800}
+  .kpi .l{font-size:11px;color:var(--dim);text-transform:uppercase;letter-spacing:.5px}
+  /* case grid */
+  .cases{display:grid;grid-template-columns:repeat(auto-fill,minmax(360px,1fr));gap:14px}
+  .case{background:var(--panel2);border:1px solid var(--line);border-radius:10px;padding:12px;cursor:pointer;transition:border-color .15s}
+  .case:hover{border-color:var(--acc)}
+  .case .top{display:flex;justify-content:space-between;align-items:baseline;gap:8px}
+  .case .nm{font-weight:700;font-size:13.5px}
+  .case .tk{font-size:11px;color:var(--dim)}
+  .stages{display:flex;gap:5px;margin:11px 0 8px}
+  .stage{flex:1;height:30px;border-radius:5px;display:flex;align-items:center;
+    justify-content:center;font-size:11px;font-weight:700;border:1px solid var(--line);
+    position:relative}
+  .stage small{position:absolute;bottom:-15px;font-size:8.5px;color:var(--dim);font-weight:400;white-space:nowrap}
+  .s-done{background:rgba(72,213,151,.16);color:var(--ok);border-color:rgba(72,213,151,.35)}
+  .s-active{background:rgba(255,204,102,.16);color:var(--warn);border-color:rgba(255,204,102,.4)}
+  .s-blocked{background:rgba(192,140,255,.18);color:var(--human);border-color:rgba(192,140,255,.45)}
+  .s-failed{background:rgba(255,71,87,.16);color:var(--crit);border-color:rgba(255,71,87,.4)}
+  .s-skipped{background:rgba(127,147,168,.12);color:var(--dim)}
+  .s-pending{background:transparent;color:var(--dim)}
+  .case .meta{display:flex;justify-content:space-between;align-items:center;margin-top:14px;font-size:11.5px}
+  .chip{display:inline-block;font-size:10px;font-weight:700;padding:2px 8px;border-radius:9px;text-transform:uppercase;letter-spacing:.4px}
+  .st-submitted{background:rgba(72,213,151,.16);color:var(--ok)}
+  .st-blocked_human{background:rgba(192,140,255,.18);color:var(--human)}
+  .st-stalled,.st-failed{background:rgba(255,71,87,.16);color:var(--crit)}
+  .st-deferred{background:rgba(255,204,102,.16);color:var(--warn)}
+  .st-running,.st-intake{background:rgba(76,194,255,.14);color:var(--acc)}
+  .st-abandoned{background:rgba(127,147,168,.14);color:var(--dim)}
+  .ready{height:6px;border-radius:4px;background:#13202c;overflow:hidden;margin-top:6px}
+  .ready > span{display:block;height:100%;background:linear-gradient(90deg,var(--high),var(--ok))}
+  /* human task panel */
+  .task{border:1px solid rgba(192,140,255,.4);border-left:4px solid var(--human);
+    border-radius:8px;padding:11px;margin-bottom:11px;background:var(--panel2)}
+  .task .tt{font-weight:700;font-size:13px}
+  .task .pr{font-size:12px;color:var(--dim);margin:4px 0 9px}
+  .task .ctx{font-family:var(--mono);font-size:11px;color:var(--dim);background:#0c141d;
+    border:1px solid var(--line);border-radius:6px;padding:7px 9px;margin-bottom:9px;white-space:pre-wrap}
+  .task .acts{display:flex;gap:7px;flex-wrap:wrap}
+  .task .acts button{font-size:12px;padding:5px 11px}
+  /* incident feed */
+  .inc{border:1px solid var(--line);border-radius:7px;padding:9px 11px;margin-bottom:9px;background:var(--panel2)}
+  .inc .top{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+  .code{font-family:var(--mono);font-size:12px;font-weight:700}
+  .sev-critical{color:var(--crit)} .sev-high{color:var(--high)}
+  .sev-medium{color:var(--med)} .sev-low{color:var(--dim)}
+  .resolved{color:var(--ok);font-size:11px}.open{color:var(--bad);font-size:11px}
+  /* audit timeline */
+  .tl{max-height:420px;overflow:auto}
+  .tl .row{display:grid;grid-template-columns:120px 38px 120px 1fr;gap:8px;
+    padding:5px 0;border-bottom:1px solid var(--line);font-size:11.5px}
+  .tl .t{font-family:var(--mono);color:var(--dim);font-size:10.5px}
+  .tl .actor{color:var(--acc);font-size:11px}
+  .tl .act{font-weight:600}
+  /* modal */
+  #modal{position:fixed;inset:0;background:rgba(2,6,10,.72);display:none;
+    align-items:center;justify-content:center;z-index:20;padding:20px}
+  #modal .m{background:var(--panel);border:1px solid var(--line);border-radius:10px;
+    max-width:860px;width:100%;max-height:84vh;overflow:auto}
+  #modal h3{margin:0;padding:12px 16px;border-bottom:1px solid var(--line);font-size:14px;
+    display:flex;justify-content:space-between;align-items:center}
+  #modal .mbody{padding:16px}
+  .close{cursor:pointer;color:var(--dim)}
+  table{width:100%;border-collapse:collapse;font-size:12px}
+  th,td{text-align:left;padding:5px 8px;border-bottom:1px solid var(--line);vertical-align:top}
+  th{color:var(--dim);font-weight:600;font-size:10.5px;text-transform:uppercase;letter-spacing:.4px}
+  .mono{font-family:var(--mono)}
+  pre{background:#0c141d;border:1px solid var(--line);border-radius:6px;padding:11px;
+    font-family:var(--mono);font-size:11.5px;white-space:pre-wrap;word-break:break-word;margin:0}
+  .loading{color:var(--dim);padding:40px;text-align:center}
+</style>
+</head>
+<body>
+<header>
+  <h1><b>UiPath</b> Competition Command Tower <span class="muted" style="font-weight:400">· Maestro Case</span></h1>
+  <span class="tag" id="backendTag">local</span>
+  <span style="flex:1"></span>
+  <span class="tag" id="clock"></span>
+  <button class="ghost" onclick="reseed()">↺ reset portfolio</button>
+</header>
+
+<main id="main">
+  <div class="card"><h2>Portfolio <span class="muted" id="totals"></span></h2>
+    <div class="body"><div class="kpi" id="kpi"><span class="muted">loading…</span></div></div></div>
+
+  <div class="card"><h2>Cases — each competition is a Maestro Case advancing through 7 stages
+    <span class="muted">click a case for stage output · audit · incidents</span></h2>
+    <div class="body"><div class="cases" id="cases"><div class="loading">loading…</div></div></div></div>
+
+  <div class="grid2">
+    <div class="card"><h2>⏸ Pending human tasks <span class="muted">Action Center — these BLOCK the case</span></h2>
+      <div class="body" id="tasks"><div class="muted">loading…</div></div></div>
+    <div class="card"><h2>Exception / incident feed <span class="muted" id="incCount"></span></h2>
+      <div class="body" id="incidents"><div class="muted">loading…</div></div></div>
+  </div>
+
+  <div class="card"><h2>Audit trail <span class="muted">append-only provenance — every transition, retry, gate, decision</span></h2>
+    <div class="body"><div class="tl" id="audit"><div class="muted">loading…</div></div></div></div>
+</main>
+
+<div id="modal" onclick="if(event.target.id==='modal')closeModal()">
+  <div class="m">
+    <h3><span id="modalTitle"></span><span class="close" onclick="closeModal()">✕ close</span></h3>
+    <div class="mbody" id="modalBody">loading…</div>
+  </div>
+</div>
+
+<script>
+const $ = s => document.querySelector(s);
+async function api(p,opt){ const r = await fetch(p,opt); if(!r.ok) throw new Error((await r.json().catch(()=>({detail:r.statusText}))).detail||r.statusText); return r.json(); }
+function esc(s){ return (s==null?'':String(s)).replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c])); }
+const STAGE_LABELS=['Intake','Verify','Cred Gate','Routing','Build','Audit','Submit'];
+
+function stageClass(st){ return 's-'+(st.status==='done'?'done':st.status==='active'?'active':
+  st.status==='blocked'?'blocked':st.status==='failed'?'failed':st.status==='skipped'?'skipped':'pending'); }
+
+function caseCard(c){
+  const stages = c.stages.map(s=>{
+    const mk = s.status==='done'?'✓':s.status==='failed'?'✗':s.status==='blocked'?'⏸':
+               s.status==='skipped'?'–':s.status==='active'?'▸':s.index;
+    return `<div class="stage ${stageClass(s)}" title="${esc(s.name)} (${s.status})">${mk}<small>${STAGE_LABELS[s.index-1]}</small></div>`;
+  }).join('');
+  const r = c.readiness;
+  const score = r? r.score : null;
+  const flag = c.deadline_flag?`<span class="tag" style="color:var(--warn)">${esc(c.deadline_flag)}</span>`:'';
+  return `<div class="case" onclick="openCase('${c.case_id}')">
+    <div class="top"><span class="nm">${esc(c.competition.name)}</span>
+      <span class="chip st-${c.status}">${esc(c.status)}</span></div>
+    <div class="tk">${esc(c.competition.track_name)} · stage ${c.current_stage}/7 ${esc(c.current_stage_name)} ${flag}</div>
+    <div class="stages">${stages}</div>
+    <div class="meta">
+      <span class="muted">${esc((c.deadline_utc||'').slice(0,16).replace('T',' '))} UTC${c.priority!=='normal'?' · <span style="color:var(--warn)">'+esc(c.priority)+'</span>':''}</span>
+      <span class="muted">${score!=null?('readiness '+score):'—'}</span>
+    </div>
+    ${score!=null?`<div class="ready"><span style="width:${Math.round(score*100)}%"></span></div>`:''}
+    ${c.disabled_integrations.length?`<div class="muted" style="font-size:11px;margin-top:6px">skipped: ${c.disabled_integrations.map(esc).join(', ')}</div>`:''}
+  </div>`;
+}
+
+function taskCard(t){
+  const ctx = JSON.stringify(t.context,null,1).replace(/[{}]/g,'').trim();
+  const btns = t.options.map(o=>{
+    const cls = (o==='approve'||o==='submit')?'approve':
+                (o==='cancel')?'reject':'neutral';
+    return `<button class="${cls}" onclick="decide('${t.task_id}','${o}')">${esc(o.replace('_',' '))}</button>`;
+  }).join('');
+  return `<div class="task">
+    <div class="tt">${esc(t.title)}</div>
+    <div class="pr">${esc(t.prompt)} <span class="muted">· stage ${t.stage} · ${esc(t.competition||'')}</span></div>
+    <div class="ctx">${esc(ctx)||'(no context)'}</div>
+    <div class="acts">${btns}</div>
+  </div>`;
+}
+
+function incCard(i){
+  return `<div class="inc"><div class="top">
+      <span class="code sev-${i.severity}">${esc(i.code)}</span>
+      <span class="muted" style="font-size:11px">stage ${i.stage} · ${esc(i.severity)}</span>
+      <span style="flex:1"></span>
+      <span class="${i.resolved?'resolved':'open'}">${i.resolved?'● resolved':'○ open'}</span></div>
+    <div style="font-size:12px;margin-top:4px">${esc(i.summary)}</div>
+    ${i.resolution?`<div class="muted" style="font-size:11.5px;margin-top:3px">→ ${esc(i.resolution)}</div>`:''}
+  </div>`;
+}
+
+function auditRow(e){
+  return `<div class="row"><span class="t">${esc((e.ts||'').slice(11,19))}</span>
+    <span class="muted">s${e.stage}</span>
+    <span class="actor">${esc(e.actor)}</span>
+    <span><span class="act">${esc(e.action)}</span> <span class="muted">${esc(e.detail||'')}</span></span></div>`;
+}
+
+async function refresh(){
+  const [cz, tz, iz, az] = await Promise.all([
+    api('/api/cases'), api('/api/human-tasks'), api('/api/incidents'), api('/api/audit')]);
+  $('#backendTag').textContent = cz.backend;
+  const t = cz.totals;
+  $('#totals').textContent = `${t.cases} cases`;
+  $('#kpi').innerHTML = `
+    <div><div class="x">${t.cases}</div><div class="l">cases</div></div>
+    <div><div class="x" style="color:var(--ok)">${t.submitted}</div><div class="l">submitted</div></div>
+    <div><div class="x" style="color:var(--human)">${t.blocked_human}</div><div class="l">awaiting human</div></div>
+    <div><div class="x" style="color:var(--high)">${t.incidents}</div><div class="l">incidents</div></div>
+    <div><div class="x">${az.count}</div><div class="l">audit events</div></div>`;
+  $('#cases').innerHTML = cz.cases.map(caseCard).join('');
+  $('#tasks').innerHTML = tz.human_tasks.length
+    ? tz.human_tasks.map(taskCard).join('')
+    : '<div class="muted">no pending gates — every case has cleared its human tasks ✓</div>';
+  $('#incCount').textContent = `${iz.incidents.length} raised · ${iz.incidents.filter(i=>i.resolved).length} resolved · ${iz.backoff.length} retries`;
+  $('#incidents').innerHTML = iz.incidents.length
+    ? iz.incidents.map(incCard).join('') : '<div class="muted">no incidents yet</div>';
+  $('#audit').innerHTML = az.events.slice().reverse().map(auditRow).join('');
+}
+
+async function decide(taskId, decision){
+  document.querySelectorAll('.task button').forEach(b=>b.disabled=true);
+  try{
+    await api(`/api/human-tasks/${taskId}/decide`,{method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({decision})});
+    await refresh();
+  }catch(e){ alert('decision failed: '+e.message); document.querySelectorAll('.task button').forEach(b=>b.disabled=false); }
+}
+
+async function reseed(){ await api('/api/reset',{method:'POST'}); await refresh(); }
+
+async function openCase(id){
+  $('#modal').style.display='flex'; $('#modalTitle').textContent=id; $('#modalBody').innerHTML='loading…';
+  try{
+    const d = await api('/api/case/'+id);
+    $('#modalTitle').textContent = d.competition.name+'  ('+d.status+')';
+    const stages = d.stages.map(s=>{
+      const out = Object.keys(s.output).filter(k=>!k.startsWith('_'));
+      return `<tr><td>${s.index}</td><td>${esc(s.name)}</td>
+        <td class="${'sev-'+(s.status==='failed'?'critical':'low')}">${esc(s.status)}</td>
+        <td>${s.attempts}</td>
+        <td class="muted">${esc(s.notes.join(' · ')||'')}</td></tr>`;
+    }).join('');
+    const inc = d.incidents.length? d.incidents.map(incCard).join('') : '<div class="muted">none</div>';
+    const ready = d.readiness? `<table><tr><th>item</th><th>status</th><th>critical</th><th>detail</th></tr>`+
+      d.readiness.items.map(it=>`<tr><td>${esc(it.item)}</td>
+        <td class="${it.status==='pass'?'resolved':it.status==='fail'?'open':'sev-medium'}">${esc(it.status)}</td>
+        <td>${it.critical?'yes':'—'}</td><td class="muted">${esc(it.detail)}</td></tr>`).join('')+
+      `</table><div class="muted" style="margin-top:6px">score ${d.readiness.score} · ${d.readiness.passed?'ready for submission gate':'critical failures'}</div>` : '<div class="muted">not yet audited</div>';
+    $('#modalBody').innerHTML = `
+      <div class="muted" style="margin-bottom:10px">${esc(d.competition.track_name)} ·
+        deadline ${esc(d.deadline_utc)} UTC / ${esc(d.deadline_kst)} KST
+        ${d.deadline_flag?'· <span style="color:var(--warn)">'+esc(d.deadline_flag)+'</span>':''}</div>
+      <h4 style="margin:6px 0">Stages</h4>
+      <table><tr><th>#</th><th>stage</th><th>status</th><th>tries</th><th>notes</th></tr>${stages}</table>
+      <h4 style="margin:16px 0 6px">Readiness audit</h4>${ready}
+      <h4 style="margin:16px 0 6px">Incidents (${d.incidents.length})</h4>${inc}
+      <h4 style="margin:16px 0 6px">Audit trail (${d.audit.length} events)</h4>
+      <pre>${esc(d.audit.map(e=>`${e.ts}  [s${e.stage}] ${e.actor}  ${e.action}  ${e.detail||''}`).join('\n'))}</pre>`;
+  }catch(e){ $('#modalBody').innerHTML='<div class="open">error: '+esc(e.message)+'</div>'; }
+}
+function closeModal(){ $('#modal').style.display='none'; }
+
+setInterval(()=>{ $('#clock').textContent = new Date().toISOString().slice(11,19)+'Z'; },1000);
+refresh();
+</script>
+</body>
+</html>

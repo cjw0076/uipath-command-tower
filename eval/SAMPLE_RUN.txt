@@ -1,0 +1,137 @@
+COMPETITION COMMAND TOWER — UiPath Maestro Case (offline demo)
+backend: local   SYNTHETIC PORTFOLIO — no UiPath credentials, no network.
+
+== SEED PORTFOLIO (six competitions = six Maestro case instances) 
+  + UiPath AgentHack 2026              Maestro Case
+  + Splunk Agentic Ops 2026            Agentic SOC Copilot
+  + FIND EVIL! DFIR 2026               Evidence-Linked Triage
+  + DACON ETRI Sleep 236690            Sleep Metric Regression
+  + DACON AI-Bias BBQ 236722           VQA Bias Mitigation
+  + Rapid GenAI Hackathon 2026         Cloud Run Copilot
+
+== ADVANCE ALL CASES TO THEIR FIRST WALL =======================
+
+▸ UiPath AgentHack 2026   [Maestro Case]  case case-93d1de4c
+   deadline 2026-06-30T03:45:00+00:00 UTC / 2026-06-30T12:45:00+09:00 KST  flag=DEADLINE_CONSERVATIVE
+   stages: 1✓ 2✓ 3⏸ 4· 5· 6· 7·   -> BLOCKED_HUMAN
+
+▸ Splunk Agentic Ops 2026   [Agentic SOC Copilot]  case case-72e377cb
+   deadline 2026-06-27T21:00:00+00:00 UTC / 2026-06-28T06:00:00+09:00 KST  flag=DEADLINE_CONSERVATIVE
+   stages: 1✓ 2✓ 3⏸ 4· 5· 6· 7·   -> BLOCKED_HUMAN
+
+▸ FIND EVIL! DFIR 2026   [Evidence-Linked Triage]  case case-daa7c79a
+   deadline 2026-06-25T23:59:00+00:00 UTC / 2026-06-26T08:59:00+09:00 KST
+   stages: 1✓ 2⏸ 3· 4· 5· 6· 7·   -> BLOCKED_HUMAN
+
+▸ DACON ETRI Sleep 236690   [Sleep Metric Regression]  case case-3dc35b6e
+   deadline 2026-07-15T14:59:00+00:00 UTC / 2026-07-15T23:59:00+09:00 KST
+   stages: 1✓ 2✓ 3⏸ 4· 5· 6· 7·   -> BLOCKED_HUMAN
+
+▸ DACON AI-Bias BBQ 236722   [VQA Bias Mitigation]  case case-ac14cf28
+   deadline 2026-07-01T14:59:00+00:00 UTC / 2026-07-01T23:59:00+09:00 KST
+   stages: 1✓ 2✓ 3⏸ 4· 5· 6· 7·   -> BLOCKED_HUMAN
+
+▸ Rapid GenAI Hackathon 2026   [Cloud Run Copilot]  case case-010a4e51
+   deadline 2026-06-29T03:45:00+00:00 UTC / 2026-06-29T12:45:00+09:00 KST  flag=DEADLINE_CONSERVATIVE
+   stages: 1✓ 2✓ 3⏸ 4· 5· 6· 7·   -> BLOCKED_HUMAN
+
+== PENDING HUMAN TASKS (Action Center inbox — BLOCKS the case) =
+  ⏸ Credential & Access Gate — UiPath AgentHack 2026
+     stage 3 · options ['approve', 'defer', 'skip_credential', 'cancel']
+  ⏸ Credential & Access Gate — Splunk Agentic Ops 2026
+     stage 3 · options ['approve', 'defer', 'skip_credential', 'cancel']
+  ⏸ Stale-Rule Acknowledgment — FIND EVIL! DFIR 2026
+     stage 2 · options ['approve', 'cancel']
+  ⏸ Credential & Access Gate — DACON ETRI Sleep 236690
+     stage 3 · options ['approve', 'defer', 'skip_credential', 'cancel']
+  ⏸ Credential & Access Gate — DACON AI-Bias BBQ 236722
+     stage 3 · options ['approve', 'defer', 'skip_credential', 'cancel']
+  ⏸ Credential & Access Gate — Rapid GenAI Hackathon 2026
+     stage 3 · options ['approve', 'defer', 'skip_credential', 'cancel']
+
+== AUTO-OPERATOR CLEARS EVERY GATE (approve / skip / submit) ===
+
+▸ UiPath AgentHack 2026   [Maestro Case]  case case-93d1de4c
+   deadline 2026-06-30T03:45:00+00:00 UTC / 2026-06-30T12:45:00+09:00 KST  flag=DEADLINE_CONSERVATIVE
+   stages: 1✓ 2✓ 3✓ 4✓ 5✓ 6✓ 7✓   -> SUBMITTED
+   readiness 0.875  all critical items pass  warnings: README complete, Demo script
+
+▸ Splunk Agentic Ops 2026   [Agentic SOC Copilot]  case case-72e377cb
+   deadline 2026-06-27T21:00:00+00:00 UTC / 2026-06-28T06:00:00+09:00 KST  flag=DEADLINE_CONSERVATIVE
+   stages: 1✓ 2✓ 3✓ 4✓ 5✓ 6✓ 7✓   -> SUBMITTED
+   readiness 0.875  all critical items pass  warnings: Demo script, Automation Cloud instance
+
+▸ FIND EVIL! DFIR 2026   [Evidence-Linked Triage]  case case-daa7c79a
+   deadline 2026-06-25T23:59:00+00:00 UTC / 2026-06-26T08:59:00+09:00 KST
+   stages: 1✓ 2✓ 3✓ 4✓ 5✓ 6✓ 7✓   -> SUBMITTED
+   readiness 0.812  all critical items pass  warnings: README complete, Demo script, Automation Cloud instance
+
+▸ DACON ETRI Sleep 236690   [Sleep Metric Regression]  case case-3dc35b6e
+   deadline 2026-07-15T14:59:00+00:00 UTC / 2026-07-15T23:59:00+09:00 KST
+   stages: 1✓ 2✓ 3✓ 4✓ 5✓ 6✓ 7✓   -> SUBMITTED
+   disabled integrations: dacon_api
+   readiness 0.812  all critical items pass  warnings: Public GitHub repo, Demo script, Automation Cloud instance
+
+▸ DACON AI-Bias BBQ 236722   [VQA Bias Mitigation]  case case-ac14cf28
+   deadline 2026-07-01T14:59:00+00:00 UTC / 2026-07-01T23:59:00+09:00 KST
+   stages: 1✓ 2✓ 3✓ 4✓ 5✓ 6✓ 7✓   -> SUBMITTED
+   readiness 0.75  all critical items pass  warnings: Public GitHub repo, README complete, Demo script, Automation Cloud instance
+
+▸ Rapid GenAI Hackathon 2026   [Cloud Run Copilot]  case case-010a4e51
+   deadline 2026-06-29T03:45:00+00:00 UTC / 2026-06-29T12:45:00+09:00 KST  flag=DEADLINE_CONSERVATIVE
+   stages: 1✓ 2✓ 3✓ 4✓ 5✓ 6✓ 7✓   -> SUBMITTED
+   readiness 0.875  all critical items pass  warnings: Demo script, Automation Cloud instance
+
+== EXCEPTION LEDGER (every named exception + its resolution) ===
+  [DEADLINE_CONFLICT] stage 2 · medium
+     deadline text carries both PDT and EDT
+     -> resolved to earlier EDT cutoff (DEADLINE_CONSERVATIVE) (resolved)
+  [DEADLINE_CONFLICT] stage 2 · medium
+     deadline text carries both PDT and EDT
+     -> resolved to earlier EDT cutoff (DEADLINE_CONSERVATIVE) (resolved)
+  [STALE_RULE_CHANGED] stage 2 · high
+     critical rule field(s) changed after intake: deadline_raw
+     -> operator acknowledgment requested (Stage 2 gate) (resolved)
+  [DEADLINE_CONFLICT] stage 2 · medium
+     deadline text carries both PDT and EDT
+     -> resolved to earlier EDT cutoff (DEADLINE_CONSERVATIVE) (resolved)
+  [CREDENTIAL_BLOCKED] stage 3 · high
+     credential(s) unavailable: dacon_api
+     -> operator skipped credential; integration disabled (resolved)
+  [ARTIFACT_SECRET_FOUND] stage 5 · critical
+     1 artifact(s) embed a secret; quarantined
+     -> re-enter Stage 5 (resolved)
+  [PLATFORM_UPLOAD_FAILED] stage 7 · medium
+     platform upload failed
+     -> retry upload with backoff (attempt 2/3) (resolved)
+  retry/backoff events: 1 (delays 1s)
+
+== AUDIT TRAIL (append-only provenance — sample) ===============
+  2026-06-11T23:50:29+00:00  [s1] engine             case_registered        UiPath AgentHack 2026 (Maestro Case)
+  2026-06-11T23:50:29+00:00  [s1] engine             case_registered        Splunk Agentic Ops 2026 (Agentic SOC Copilot)
+  2026-06-11T23:50:29+00:00  [s1] engine             case_registered        FIND EVIL! DFIR 2026 (Evidence-Linked Triage)
+  2026-06-11T23:50:29+00:00  [s1] engine             case_registered        DACON ETRI Sleep 236690 (Sleep Metric Regression)
+  2026-06-11T23:50:29+00:00  [s1] engine             case_registered        DACON AI-Bias BBQ 236722 (VQA Bias Mitigation)
+  2026-06-11T23:50:29+00:00  [s1] engine             case_registered        Rapid GenAI Hackathon 2026 (Cloud Run Copilot)
+  2026-06-11T23:50:29+00:00  [s1] robot              stage_started          Contest Intake
+  2026-06-11T23:50:29+00:00  [s1] robot              stage_completed        parsed 5 assets, deadline 2026-06-30T03:45:00+00:00; PDT/EDT ambiguity detected
+  2026-06-11T23:50:29+00:00  [s2] ai_agent           stage_started          Rule Verification
+  2026-06-11T23:50:29+00:00  [s2] engine             incident_raised        DEADLINE_CONFLICT: deadline text carries both PDT and EDT
+  2026-06-11T23:50:29+00:00  [s2] ai_agent           stage_completed        verified 4 fields
+  2026-06-11T23:50:29+00:00  [s3] operator           stage_started          Credential & Access Gate
+  2026-06-11T23:50:29+00:00  [s3] ai_agent           human_task_posted      Credential & Access Gate — UiPath AgentHack 2026 [approve, defer, skip_credential, cancel]
+  2026-06-11T23:50:29+00:00  [s1] robot              stage_started          Contest Intake
+  ... 136 total audit events (append-only; no record mutated or deleted)
+
+== PORTFOLIO SUMMARY ===========================================
+  cases            : 6
+  submitted        : 6
+  blocked on human : 0
+  incidents raised : 7 (7 resolved)
+  audit events     : 136
+  human decisions  : 13
+
+Snapshot written: out/portfolio_snapshot.json
+
+DONE — six cases driven through seven Maestro stages, every exception class handled, two human gates enforced.
+Launch the live dashboard with:  ./run_dashboard.sh   (then open :8120)

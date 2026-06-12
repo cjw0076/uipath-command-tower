@@ -1,0 +1,131 @@
+{
+  "schema": "command_tower_eval/1.0",
+  "synthetic": true,
+  "aggregate": {
+    "cases": 6,
+    "submitted": 6,
+    "terminal_rate": 1.0,
+    "mean_readiness": 0.833,
+    "mean_stages_completed": 7.0,
+    "total_human_gates": 13,
+    "total_incidents": 7,
+    "incidents_all_resolved": true,
+    "distinct_exception_classes": [
+      "ARTIFACT_SECRET_FOUND",
+      "CREDENTIAL_BLOCKED",
+      "DEADLINE_CONFLICT",
+      "PLATFORM_UPLOAD_FAILED",
+      "STALE_RULE_CHANGED"
+    ],
+    "distinct_exception_count": 5,
+    "total_audit_events": 136,
+    "retry_events": 1
+  },
+  "cases": [
+    {
+      "case_id": "case-78166e1c",
+      "name": "UiPath AgentHack 2026",
+      "track": "Maestro Case",
+      "terminal_status": "submitted",
+      "stages_completed": 7,
+      "readiness_score": 0.875,
+      "readiness_passed": true,
+      "deadline_flag": "DEADLINE_CONSERVATIVE",
+      "incidents": [
+        "DEADLINE_CONFLICT"
+      ],
+      "incidents_resolved": true,
+      "human_gates": 2,
+      "audit_events": 21,
+      "disabled_integrations": []
+    },
+    {
+      "case_id": "case-40e02187",
+      "name": "Splunk Agentic Ops 2026",
+      "track": "Agentic SOC Copilot",
+      "terminal_status": "submitted",
+      "stages_completed": 7,
+      "readiness_score": 0.875,
+      "readiness_passed": true,
+      "deadline_flag": "DEADLINE_CONSERVATIVE",
+      "incidents": [
+        "DEADLINE_CONFLICT"
+      ],
+      "incidents_resolved": true,
+      "human_gates": 2,
+      "audit_events": 21,
+      "disabled_integrations": []
+    },
+    {
+      "case_id": "case-1362afc0",
+      "name": "FIND EVIL! DFIR 2026",
+      "track": "Evidence-Linked Triage",
+      "terminal_status": "submitted",
+      "stages_completed": 7,
+      "readiness_score": 0.812,
+      "readiness_passed": true,
+      "deadline_flag": null,
+      "incidents": [
+        "STALE_RULE_CHANGED"
+      ],
+      "incidents_resolved": true,
+      "human_gates": 3,
+      "audit_events": 25,
+      "disabled_integrations": []
+    },
+    {
+      "case_id": "case-1d2a7fa0",
+      "name": "DACON ETRI Sleep 236690",
+      "track": "Sleep Metric Regression",
+      "terminal_status": "submitted",
+      "stages_completed": 7,
+      "readiness_score": 0.812,
+      "readiness_passed": true,
+      "deadline_flag": null,
+      "incidents": [
+        "CREDENTIAL_BLOCKED"
+      ],
+      "incidents_resolved": true,
+      "human_gates": 2,
+      "audit_events": 22,
+      "disabled_integrations": [
+        "dacon_api"
+      ]
+    },
+    {
+      "case_id": "case-c3e3fb1d",
+      "name": "DACON AI-Bias BBQ 236722",
+      "track": "VQA Bias Mitigation",
+      "terminal_status": "submitted",
+      "stages_completed": 7,
+      "readiness_score": 0.75,
+      "readiness_passed": true,
+      "deadline_flag": null,
+      "incidents": [
+        "PLATFORM_UPLOAD_FAILED"
+      ],
+      "incidents_resolved": true,
+      "human_gates": 2,
+      "audit_events": 22,
+      "disabled_integrations": []
+    },
+    {
+      "case_id": "case-efa59036",
+      "name": "Rapid GenAI Hackathon 2026",
+      "track": "Cloud Run Copilot",
+      "terminal_status": "submitted",
+      "stages_completed": 7,
+      "readiness_score": 0.875,
+      "readiness_passed": true,
+      "deadline_flag": "DEADLINE_CONSERVATIVE",
+      "incidents": [
+        "ARTIFACT_SECRET_FOUND",
+        "DEADLINE_CONFLICT"
+      ],
+      "incidents_resolved": true,
+      "human_gates": 2,
+      "audit_events": 25,
+      "disabled_integrations": []
+    }
+  ]
+}

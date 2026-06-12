@@ -189,10 +189,10 @@ override invariant.
 
 | Field | Value |
 |---|---|
-| Public repository URL | `TODO — create repo and paste URL` |
-| Demo video URL | `TODO — record and upload` |
+| Public repository URL | https://github.com/cjw0076/uipath-command-tower |
+| Demo video URL | https://youtu.be/g8fEB-X1hiI (live dashboard demo: human-in-the-loop gates + exception recovery + audit trail) |
 | Presentation deck URL | `TODO — create and paste link` |
-| Live Automation Cloud URL | `TODO — log in (Google SSO) and paste project URL` |
+| Live Automation Cloud URL | `TODO — log in (Google SSO) and paste project URL` (only remaining external gate) |
 
 ---
 
@@ -203,7 +203,7 @@ override invariant.
 | **Business Impact & Adoption Potential** | Manages real six-competition portfolio; reusable as a UiPath template for any team running parallel Devpost entries; addresses a concrete operational failure mode. |
 | **Platform Usage** | UiPath Maestro Case (core), Maestro AI Agent (stages 2, 4, 6), Human Task + Action Center (stages 3, 7), Studio Web Robot (stages 1, 5, 6), Automation Cloud Credential Store. Every stage uses a native UiPath component. |
 | **Technical Execution, Feasibility & Versatility** | Seven-stage case spec with data contracts, 12 exception codes, two HITL gates, and a multi-lane agent routing table. Architecture diagram reflects actual workflow logic. Docs-first delivery means the design is importable the moment a platform session is open. |
-| **Completeness of Delivery** | Public repo, MIT license, README with component/setup/agent disclosure, Maestro case design, architecture diagram, coding-agent evidence appendix, Devpost answer draft. Missing: live Automation Cloud running instance and demo video (platform access gate is the only blocker). |
+| **Completeness of Delivery** | Working offline-runnable system (stdlib state machine, 58 passing tests, portfolio benchmark, interactive FastAPI dashboard), recorded demo video, public repo, MIT license, README with component/setup/agent disclosure, Maestro case design, architecture diagram, coding-agent evidence appendix, Devpost answer draft. Missing only: live Automation Cloud running instance (platform SSO gate) and presentation deck. |
 | **Creativity & Innovation** | Applies Maestro Case to a meta-problem (managing the submission of competition entries using UiPath) rather than a synthetic demo scenario. The exception density and HITL gate design are real operational requirements, not contrived. |
 | **Presentation** | README + four Markdown docs covering design, architecture, evidence, and submission answers. Mermaid flowchart with color-coded actor classes. Demo video pending live session. |
 | **Bonus: Coding Agent Use** | Claude Code, Codex CLI, and Gemini CLI all contributed. Evidence chain: `goal_loops/` → `AGENT_WORKLOG.md` → `receipts/` → `ledger.md`, with session timestamps and artifact cross-references. See `docs/agent_evidence_appendix.md`. |
