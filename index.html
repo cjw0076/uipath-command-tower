@@ -1,0 +1,209 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Competition Command Tower - UiPath Maestro Case</title>
+<style>
+:root {
+  --bg:#0a0f14; --panel:#121923; --ink:#e6edf5; --muted:#8ea2b8;
+  --line:#243244; --uipath:#fa4616; --ok:#3ddc97; --warn:#ffcc66; --blue:#61c2ff;
+}
+* { box-sizing:border-box; }
+body { margin:0; background:var(--bg); color:var(--ink);
+  font:15px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif; }
+header { padding:34px 24px 20px; border-bottom:1px solid var(--line);
+  background:linear-gradient(180deg,#111a25,#0a0f14); }
+main { max-width:1160px; margin:0 auto; padding:22px; display:grid; gap:18px; }
+h1 { margin:0 0 8px; font-size:34px; letter-spacing:.2px; }
+h1 span { color:var(--uipath); }
+p { color:var(--muted); max-width:860px; }
+.grid { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:12px; }
+@media(max-width:900px) { .grid { grid-template-columns:repeat(2,minmax(0,1fr)); } }
+.kpi,.card { background:var(--panel); border:1px solid var(--line); border-radius:10px; }
+.kpi { padding:16px; }
+.kpi b { display:block; font-size:28px; }
+.kpi small, small { color:var(--muted); }
+.card { padding:18px; overflow:auto; }
+table { width:100%; border-collapse:collapse; min-width:860px; }
+th,td { text-align:left; padding:10px 9px; border-bottom:1px solid var(--line); vertical-align:top; }
+th { color:var(--muted); font-size:12px; text-transform:uppercase; letter-spacing:.5px; }
+.pill { display:inline-block; padding:3px 9px; border-radius:999px; font-size:12px; font-weight:700; }
+.ok { color:#062317; background:var(--ok); }
+.warn { color:#241b00; background:var(--warn); }
+.links a { color:var(--blue); margin-right:16px; }
+pre { white-space:pre-wrap; word-break:break-word; background:#071018; border:1px solid var(--line);
+  border-radius:8px; padding:14px; color:#b9c8d8; font-size:12px; max-height:360px; overflow:auto; }
+</style>
+</head>
+<body>
+<header>
+  <h1><span>UiPath</span> Competition Command Tower</h1>
+  <p>A Maestro Case control plane for parallel hackathon operations: rule intake,
+  human gates, coding-agent routing, readiness audit, exception recovery, and
+  append-only evidence. This hosted page is a public-safe static snapshot; the
+  repository also includes the runnable FastAPI dashboard and 58-test engine.</p>
+</header>
+<main>
+  <section class="grid">
+    <div class="kpi"><b>6</b><small>cases modelled</small></div>
+    <div class="kpi"><b>6</b><small>simulated submitted</small></div>
+    <div class="kpi"><b>5</b><small>exception classes</small></div>
+    <div class="kpi"><b>136</b><small>audit events</small></div>
+  </section>
+  <section class="card">
+    <h2>Portfolio Evaluation</h2>
+    <table>
+      <thead><tr><th>Case</th><th>Status</th><th>Stages</th><th>Readiness</th><th>Human gates</th><th>Exceptions</th></tr></thead>
+      <tbody><tr><td><strong>UiPath AgentHack 2026</strong><br><small>Maestro Case</small></td><td><span class="pill ok">submitted</span></td><td>7/7</td><td>0.875</td><td>2</td><td>none</td></tr><tr><td><strong>Splunk Agentic Ops 2026</strong><br><small>Agentic SOC Copilot</small></td><td><span class="pill ok">submitted</span></td><td>7/7</td><td>0.875</td><td>2</td><td>none</td></tr><tr><td><strong>FIND EVIL! DFIR 2026</strong><br><small>Evidence-Linked Triage</small></td><td><span class="pill ok">submitted</span></td><td>7/7</td><td>0.812</td><td>3</td><td>none</td></tr><tr><td><strong>DACON ETRI Sleep 236690</strong><br><small>Sleep Metric Regression</small></td><td><span class="pill ok">submitted</span></td><td>7/7</td><td>0.812</td><td>2</td><td>none</td></tr><tr><td><strong>DACON AI-Bias BBQ 236722</strong><br><small>VQA Bias Mitigation</small></td><td><span class="pill ok">submitted</span></td><td>7/7</td><td>0.750</td><td>2</td><td>none</td></tr><tr><td><strong>Rapid GenAI Hackathon 2026</strong><br><small>Cloud Run Copilot</small></td><td><span class="pill ok">submitted</span></td><td>7/7</td><td>0.875</td><td>2</td><td>none</td></tr></tbody>
+    </table>
+  </section>
+  <section class="card">
+    <h2>Judge-Facing Links</h2>
+    <p class="links">
+      <a href="https://github.com/cjw0076/uipath-command-tower">GitHub repo</a>
+      <a href="https://youtu.be/g8fEB-X1hiI">Demo video</a>
+      <a href="docs/presentation_deck.md">Presentation deck</a>
+      <a href="docs/DEFICIENCY_CLOSURE.md">Deficiency closure</a>
+    </p>
+    <p>Important: this public Pages URL is a hosted demo snapshot. The official
+    UiPath Automation Cloud / Maestro live URL remains the final founder-gated
+    proof for the Devpost submission.</p>
+  </section>
+  <section class="card">
+    <h2>Raw Evaluation JSON</h2>
+    <pre>{
+  &quot;schema&quot;: &quot;command_tower_eval/1.0&quot;,
+  &quot;synthetic&quot;: true,
+  &quot;aggregate&quot;: {
+    &quot;cases&quot;: 6,
+    &quot;submitted&quot;: 6,
+    &quot;terminal_rate&quot;: 1.0,
+    &quot;mean_readiness&quot;: 0.833,
+    &quot;mean_stages_completed&quot;: 7.0,
+    &quot;total_human_gates&quot;: 13,
+    &quot;total_incidents&quot;: 7,
+    &quot;incidents_all_resolved&quot;: true,
+    &quot;distinct_exception_classes&quot;: [
+      &quot;ARTIFACT_SECRET_FOUND&quot;,
+      &quot;CREDENTIAL_BLOCKED&quot;,
+      &quot;DEADLINE_CONFLICT&quot;,
+      &quot;PLATFORM_UPLOAD_FAILED&quot;,
+      &quot;STALE_RULE_CHANGED&quot;
+    ],
+    &quot;distinct_exception_count&quot;: 5,
+    &quot;total_audit_events&quot;: 136,
+    &quot;retry_events&quot;: 1
+  },
+  &quot;cases&quot;: [
+    {
+      &quot;case_id&quot;: &quot;case-8a0d1376&quot;,
+      &quot;name&quot;: &quot;UiPath AgentHack 2026&quot;,
+      &quot;track&quot;: &quot;Maestro Case&quot;,
+      &quot;terminal_status&quot;: &quot;submitted&quot;,
+      &quot;stages_completed&quot;: 7,
+      &quot;readiness_score&quot;: 0.875,
+      &quot;readiness_passed&quot;: true,
+      &quot;deadline_flag&quot;: &quot;DEADLINE_CONSERVATIVE&quot;,
+      &quot;incidents&quot;: [
+        &quot;DEADLINE_CONFLICT&quot;
+      ],
+      &quot;incidents_resolved&quot;: true,
+      &quot;human_gates&quot;: 2,
+      &quot;audit_events&quot;: 21,
+      &quot;disabled_integrations&quot;: []
+    },
+    {
+      &quot;case_id&quot;: &quot;case-607fe58a&quot;,
+      &quot;name&quot;: &quot;Splunk Agentic Ops 2026&quot;,
+      &quot;track&quot;: &quot;Agentic SOC Copilot&quot;,
+      &quot;terminal_status&quot;: &quot;submitted&quot;,
+      &quot;stages_completed&quot;: 7,
+      &quot;readiness_score&quot;: 0.875,
+      &quot;readiness_passed&quot;: true,
+      &quot;deadline_flag&quot;: &quot;DEADLINE_CONSERVATIVE&quot;,
+      &quot;incidents&quot;: [
+        &quot;DEADLINE_CONFLICT&quot;
+      ],
+      &quot;incidents_resolved&quot;: true,
+      &quot;human_gates&quot;: 2,
+      &quot;audit_events&quot;: 21,
+      &quot;disabled_integrations&quot;: []
+    },
+    {
+      &quot;case_id&quot;: &quot;case-9eeb5b07&quot;,
+      &quot;name&quot;: &quot;FIND EVIL! DFIR 2026&quot;,
+      &quot;track&quot;: &quot;Evidence-Linked Triage&quot;,
+      &quot;terminal_status&quot;: &quot;submitted&quot;,
+      &quot;stages_completed&quot;: 7,
+      &quot;readiness_score&quot;: 0.812,
+      &quot;readiness_passed&quot;: true,
+      &quot;deadline_flag&quot;: null,
+      &quot;incidents&quot;: [
+        &quot;STALE_RULE_CHANGED&quot;
+      ],
+      &quot;incidents_resolved&quot;: true,
+      &quot;human_gates&quot;: 3,
+      &quot;audit_events&quot;: 25,
+      &quot;disabled_integrations&quot;: []
+    },
+    {
+      &quot;case_id&quot;: &quot;case-ce02f1fe&quot;,
+      &quot;name&quot;: &quot;DACON ETRI Sleep 236690&quot;,
+      &quot;track&quot;: &quot;Sleep Metric Regression&quot;,
+      &quot;terminal_status&quot;: &quot;submitted&quot;,
+      &quot;stages_completed&quot;: 7,
+      &quot;readiness_score&quot;: 0.812,
+      &quot;readiness_passed&quot;: true,
+      &quot;deadline_flag&quot;: null,
+      &quot;incidents&quot;: [
+        &quot;CREDENTIAL_BLOCKED&quot;
+      ],
+      &quot;incidents_resolved&quot;: true,
+      &quot;human_gates&quot;: 2,
+      &quot;audit_events&quot;: 22,
+      &quot;disabled_integrations&quot;: [
+        &quot;dacon_api&quot;
+      ]
+    },
+    {
+      &quot;case_id&quot;: &quot;case-07bb2b13&quot;,
+      &quot;name&quot;: &quot;DACON AI-Bias BBQ 236722&quot;,
+      &quot;track&quot;: &quot;VQA Bias Mitigation&quot;,
+      &quot;terminal_status&quot;: &quot;submitted&quot;,
+      &quot;stages_completed&quot;: 7,
+      &quot;readiness_score&quot;: 0.75,
+      &quot;readiness_passed&quot;: true,
+      &quot;deadline_flag&quot;: null,
+      &quot;incidents&quot;: [
+        &quot;PLATFORM_UPLOAD_FAILED&quot;
+      ],
+      &quot;incidents_resolved&quot;: true,
+      &quot;human_gates&quot;: 2,
+      &quot;audit_events&quot;: 22,
+      &quot;disabled_integrations&quot;: []
+    },
+    {
+      &quot;case_id&quot;: &quot;case-f00c962f&quot;,
+      &quot;name&quot;: &quot;Rapid GenAI Hackathon 2026&quot;,
+      &quot;track&quot;: &quot;Cloud Run Copilot&quot;,
+      &quot;terminal_status&quot;: &quot;submitted&quot;,
+      &quot;stages_completed&quot;: 7,
+      &quot;readiness_score&quot;: 0.875,
+      &quot;readiness_passed&quot;: true,
+      &quot;deadline_flag&quot;: &quot;DEADLINE_CONSERVATIVE&quot;,
+      &quot;incidents&quot;: [
+        &quot;ARTIFACT_SECRET_FOUND&quot;,
+        &quot;DEADLINE_CONFLICT&quot;
+      ],
+      &quot;incidents_resolved&quot;: true,
+      &quot;human_gates&quot;: 2,
+      &quot;audit_events&quot;: 25,
+      &quot;disabled_integrations&quot;: []
+    }
+  ]
+}</pre>
+  </section>
+</main>
+</body>
+</html>
