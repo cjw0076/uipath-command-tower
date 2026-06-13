@@ -202,6 +202,7 @@ override invariant.
 | Field | Value |
 |---|---|
 | Public repository URL | https://github.com/cjw0076/uipath-command-tower |
+| Hosted demo URL | https://cjw0076.github.io/uipath-command-tower/ |
 | Demo video URL | https://youtu.be/g8fEB-X1hiI (live dashboard demo: human-in-the-loop gates + exception recovery + audit trail) |
 | Presentation deck URL | `docs/presentation_deck.md` in the public repo; also included in the submission package |
 | Live Automation Cloud URL | Founder-gated: paste the Automation Cloud / Maestro project URL after Google SSO + External App credentials are available |
